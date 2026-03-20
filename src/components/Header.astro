@@ -1,0 +1,55 @@
+---
+const navLinks = [
+  { href: '/#features', label: 'Features' },
+  { href: '/support', label: 'Support' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
+  <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3 group">
+      <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-105 group-hover:rotate-3">
+        <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h10M4 18h14"/>
+        </svg>
+      </div>
+      <span class="font-display font-bold text-xl text-text tracking-tight">
+        Simply<span class="text-primary">Markdown</span>
+      </span>
+    </a>
+
+    <!-- Navigation -->
+    <div class="flex items-center gap-1">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={[
+            "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+            currentPath === link.href
+              ? "bg-surface text-text"
+              : "text-text-muted hover:text-text hover:bg-surface/50"
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="https://apps.apple.com/app/simply-markdown/id6745030798"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ml-4 px-5 py-2.5 bg-primary hover:bg-primary-hover text-white text-sm font-semibold rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+      >
+        Download
+      </a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .font-display {
+    font-family: 'Outfit', sans-serif;
+  }
+</style>

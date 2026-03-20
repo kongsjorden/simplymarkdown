@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const lastUpdated = 'March 2026';
+---
+
+<Layout title="Privacy Policy" description="Privacy policy for Simply Markdown. We collect zero data.">
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="font-display font-bold text-4xl md:text-5xl text-text mb-4">
+        Privacy Policy
+      </h1>
+      <p class="text-text-dim text-sm mb-12">
+        Last updated: {lastUpdated}
+      </p>
+
+      <div class="prose">
+        <!-- Summary -->
+        <div class="p-6 bg-primary/10 rounded-2xl border border-primary/20 mb-12">
+          <h2 class="text-xl font-display font-semibold text-text mt-0 mb-3">
+            The Short Version
+          </h2>
+          <p class="text-text-muted mb-0">
+            <strong class="text-text">We collect zero data.</strong> Simply Markdown works completely offline. It reads Markdown files from your local disk and renders them in the app. We have no analytics, no tracking, no accounts, and no network requests. Your files stay on your Mac.
+          </p>
+        </div>
+
+        <h2>Information We Collect</h2>
+        <p>
+          <strong>None.</strong> Simply Markdown does not collect, store, or transmit any personal information or usage data. The app operates entirely on your device without any connection to external servers.
+        </p>
+
+        <h2>Data Storage</h2>
+        <p>
+          Simply Markdown reads files you choose to open. Your preferences (theme, font size, sidebar state) are stored locally using macOS standard mechanisms. This data is:
+        </p>
+        <ul>
+          <li>Stored only on your Mac</li>
+          <li>Included in your Time Machine backups if enabled</li>
+          <li>Deleted when you uninstall the app</li>
+          <li>Never transmitted to us or any third party</li>
+        </ul>
+
+        <h2>Network Access</h2>
+        <p>
+          Simply Markdown does not require or use an internet connection. The app makes no network requests whatsoever. All rendering — including Mermaid diagrams, KaTeX math, and syntax highlighting — happens locally using bundled libraries.
+        </p>
+
+        <h2>Third-Party Services</h2>
+        <p>
+          We do not use any third-party services, analytics platforms, or advertising networks. The app contains no:
+        </p>
+        <ul>
+          <li>Analytics or tracking code</li>
+          <li>Advertising SDKs</li>
+          <li>Third-party login services</li>
+          <li>Crash reporting services</li>
+          <li>Network-dependent rendering services</li>
+        </ul>
+
+        <h2>File Access</h2>
+        <p>
+          Simply Markdown only accesses files you explicitly open or folders you grant access to. The app uses macOS security-scoped bookmarks to remember folder access between launches. You can revoke this access at any time through macOS System Settings.
+        </p>
+
+        <h2>Children's Privacy</h2>
+        <p>
+          Since we collect no data, Simply Markdown is compliant with children's privacy regulations including COPPA. The app does not knowingly collect any information from anyone, including children under 13.
+        </p>
+
+        <h2>Changes to This Policy</h2>
+        <p>
+          If we ever change our data practices, we will update this policy and notify users through the App Store update notes. Given our commitment to privacy, any changes would only be to further strengthen your privacy protections.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          If you have any questions about this privacy policy, please contact us:
+        </p>
+        <p>
+          <a href="mailto:kongsjorden@gmail.com" class="text-primary hover:underline">kongsjorden@gmail.com</a>
+        </p>
+
+        <h2>Your Rights</h2>
+        <p>
+          Since we don't collect any data, there's nothing to access, correct, or delete. Your files and preferences exist only on your Mac and are fully under your control.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .font-display {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .prose {
+    color: var(--color-text-muted);
+  }
+
+  .prose h2 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  .prose ul {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    list-style-type: disc;
+  }
+
+  .prose strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .prose a {
+    color: var(--color-primary);
+  }
+
+  .prose a:hover {
+    text-decoration: underline;
+  }
+</style>

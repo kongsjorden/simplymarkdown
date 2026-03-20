@@ -1,0 +1,342 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import MacMockup from '../components/MacMockup.astro';
+
+const features = [
+  {
+    title: 'Mermaid Diagrams',
+    description: 'Render flowcharts, sequence diagrams, ER diagrams, pie charts, state machines, and more — all from plain text.',
+    icon: 'mermaid',
+  },
+  {
+    title: 'KaTeX Math',
+    description: 'Beautiful LaTeX math rendering for equations, formulas, and scientific notation. Inline and display math supported.',
+    icon: 'katex',
+  },
+  {
+    title: 'Syntax Highlighting',
+    description: 'Over 190 languages supported with automatic detection. Code blocks look exactly like your favorite editor.',
+    icon: 'code',
+  },
+  {
+    title: 'Live Reload',
+    description: 'Edit in your favorite text editor, see changes instantly. File watching with smart debouncing keeps everything in sync.',
+    icon: 'reload',
+  },
+  {
+    title: 'Table of Contents',
+    description: 'Auto-generated sidebar navigation from your headings. Click to jump, see where you are, collapse sections.',
+    icon: 'toc',
+  },
+  {
+    title: 'Light & Dark Mode',
+    description: 'Beautiful themes that follow your system preference or set manually. Typography optimized for reading comfort.',
+    icon: 'theme',
+  },
+  {
+    title: 'Quick Look',
+    description: 'Preview Markdown files directly in Finder with spacebar. No need to open the app for a quick glance.',
+    icon: 'quicklook',
+  },
+  {
+    title: 'GitHub Flavored Markdown',
+    description: 'Tables, task lists, strikethrough, autolinks, footnotes, and blockquotes — full GFM support out of the box.',
+    icon: 'gfm',
+  },
+];
+
+const carouselScreenshots = [
+  { src: '/screenshots/01-mermaid-flowchart-light.png', label: 'Mermaid Flowchart' },
+  { src: '/screenshots/07-mermaid-flowchart-dark.png', label: 'Dark Mode' },
+  { src: '/screenshots/04-katex-math-light.png', label: 'KaTeX Math' },
+  { src: '/screenshots/05-syntax-highlighting-light.png', label: 'Syntax Highlighting' },
+  { src: '/screenshots/11-architecture-system-overview-light.png', label: 'System Overview' },
+  { src: '/screenshots/12-architecture-er-diagram-light.png', label: 'ER Diagram' },
+  { src: '/screenshots/14-science-math-equations-light.png', label: 'Science & Math' },
+  { src: '/screenshots/10-gfm-blockquotes-frontmatter-dark.png', label: 'GFM & Frontmatter' },
+];
+---
+
+<Layout title="Home">
+  <!-- Hero Section -->
+  <Hero
+    title="Beautiful Markdown, Rendered Natively"
+    subtitle="A lightweight macOS viewer for Markdown files with Mermaid diagrams, KaTeX math, syntax highlighting, live reload, and a table of contents — all in a native app."
+  />
+
+  <!-- Features Grid -->
+  <section id="features" class="py-16 md:py-20 scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-text mb-4">
+          Everything You Need to Read Markdown
+        </h2>
+        <p class="text-text-muted text-lg max-w-2xl mx-auto">
+          Simply Markdown renders your files beautifully with support for every Markdown feature you use.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {features.map((feature, i) => (
+          <FeatureCard {...feature} delay={i * 100} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshot Showcase -->
+  <section id="screenshots" class="py-16 md:py-24 relative overflow-hidden scroll-mt-20">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface/50 to-transparent pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative">
+      <div class="text-center mb-16">
+        <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-text mb-4">
+          See It in Action
+        </h2>
+        <p class="text-text-muted text-lg max-w-2xl mx-auto">
+          From flowcharts to formulas, Simply Markdown renders everything beautifully
+        </p>
+      </div>
+
+      <!-- Screenshot Carousel -->
+      <div class="relative group/carousel">
+        <!-- Fade edges -->
+        <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
+
+        <!-- Navigation Arrows -->
+        <button
+          id="carousel-prev"
+          class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-surface/90 backdrop-blur border border-border/50 text-text-muted hover:text-primary hover:border-primary/50 hover:bg-surface transition-all duration-300 opacity-0 group-hover/carousel:opacity-100 focus:opacity-100 hidden md:flex items-center justify-center shadow-lg hover:scale-110"
+          aria-label="Previous screenshot"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <button
+          id="carousel-next"
+          class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-surface/90 backdrop-blur border border-border/50 text-text-muted hover:text-primary hover:border-primary/50 hover:bg-surface transition-all duration-300 opacity-0 group-hover/carousel:opacity-100 focus:opacity-100 hidden md:flex items-center justify-center shadow-lg hover:scale-110"
+          aria-label="Next screenshot"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+
+        <div class="flex gap-6 md:gap-8 overflow-x-auto pb-8 px-4 scrollbar-hide snap-x snap-mandatory scroll-smooth cursor-grab active:cursor-grabbing" id="screenshot-carousel">
+          {carouselScreenshots.map((item, i) => (
+            <div class="flex-shrink-0 snap-center carousel-item" data-index={i}>
+              <div class="relative group">
+                <div class="absolute -inset-4 bg-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500"></div>
+                <MacMockup src={item.src} alt={item.label} size="sm" />
+                <p class="text-center text-text-muted text-sm mt-4 font-medium">{item.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Dot indicators -->
+        <div class="flex justify-center gap-2 mt-6" id="carousel-dots">
+          {carouselScreenshots.map((_, i) => (
+            <button
+              class="carousel-dot w-2 h-2 rounded-full bg-text-dim/30 hover:bg-text-dim/60 transition-all duration-300 hover:scale-125"
+              data-index={i}
+              aria-label={`Go to screenshot ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        <!-- Scroll hints -->
+        <div class="flex justify-center gap-2 mt-3 md:hidden">
+          <span class="text-text-dim text-sm">Swipe to explore</span>
+          <svg class="w-5 h-5 text-text-dim animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </div>
+        <div class="hidden md:flex justify-center gap-2 mt-3">
+          <span class="text-text-dim text-sm">Drag or use arrows to explore</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="relative rounded-3xl bg-gradient-to-br from-primary/20 via-surface to-surface border border-primary/20 p-8 md:p-12 text-center overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-secondary/5 rounded-full blur-2xl"></div>
+
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-text mb-4 relative">
+          Ready to View Markdown Beautifully?
+        </h2>
+        <p class="text-text-muted text-lg mb-8 max-w-xl mx-auto relative">
+          Download Simply Markdown and turn your .md files into beautifully rendered documents.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center relative">
+          <a
+            href="https://apps.apple.com/app/simply-markdown/id6745030798"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary hover:bg-primary-hover text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105"
+          >
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            Download on Mac App Store
+          </a>
+          <a
+            href="/support"
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-surface hover:bg-surface-hover text-text font-semibold rounded-xl border border-border transition-colors"
+          >
+            Get Support
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .font-display {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  @keyframes bounceX {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+  }
+
+  .animate-bounce-x {
+    animation: bounceX 1.5s ease-in-out infinite;
+  }
+
+  .carousel-dot.active {
+    background-color: var(--color-primary);
+    transform: scale(1.5);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.getElementById('screenshot-carousel');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const items = document.querySelectorAll('.carousel-item');
+
+    if (!carousel || !prevBtn || !nextBtn) return;
+
+    let currentIndex = 0;
+    const totalItems = items.length;
+
+    function updateDots() {
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    function scrollToItem(index: number) {
+      const item = items[index];
+      if (item) {
+        const containerRect = carousel.getBoundingClientRect();
+        const itemRect = item.getBoundingClientRect();
+        const scrollLeft = carousel.scrollLeft + (itemRect.left - containerRect.left) - (containerRect.width / 2) + (itemRect.width / 2);
+        carousel.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        currentIndex = index;
+        updateDots();
+      }
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+      scrollToItem(currentIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % totalItems;
+      scrollToItem(currentIndex);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        scrollToItem(i);
+      });
+    });
+
+    let scrollTimeout: ReturnType<typeof setTimeout>;
+    carousel.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const containerRect = carousel.getBoundingClientRect();
+        const containerCenter = containerRect.left + containerRect.width / 2;
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        items.forEach((item, i) => {
+          const itemRect = item.getBoundingClientRect();
+          const itemCenter = itemRect.left + itemRect.width / 2;
+          const distance = Math.abs(containerCenter - itemCenter);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = i;
+          }
+        });
+
+        currentIndex = closestIndex;
+        updateDots();
+      }, 50);
+    });
+
+    // Drag to scroll
+    let isDown = false;
+    let startX: number;
+    let scrollLeft: number;
+
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+
+    carousel.addEventListener('mouseleave', () => { isDown = false; });
+    carousel.addEventListener('mouseup', () => { isDown = false; });
+
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      const rect = carousel.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) {
+        if (e.key === 'ArrowLeft') {
+          currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+          scrollToItem(currentIndex);
+        } else if (e.key === 'ArrowRight') {
+          currentIndex = (currentIndex + 1) % totalItems;
+          scrollToItem(currentIndex);
+        }
+      }
+    });
+
+    updateDots();
+  });
+</script>
