@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<Layout title="Blog" description="Articles about Markdown, Mermaid diagrams, KaTeX math, and tips for working with Markdown on macOS.">
+  <section class="pt-28 pb-16 md:pt-36 md:pb-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="font-display font-bold text-4xl md:text-5xl text-text mb-4">Blog</h1>
+      <p class="text-text-muted text-lg mb-12">
+        Tips, tutorials, and guides for getting the most out of Markdown.
+      </p>
+
+      <div class="flex flex-col gap-8">
+        {posts.map((post) => (
+          <a href={`/blog/${post.id}`} class="group block p-6 rounded-2xl bg-surface/50 border border-border/50 hover:border-primary/30 hover:bg-surface transition-all duration-200">
+            <div class="flex flex-wrap gap-2 mb-3">
+              {post.data.tags.map((tag: string) => (
+                <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h2 class="font-display font-bold text-xl md:text-2xl text-text group-hover:text-primary transition-colors mb-2">
+              {post.data.title}
+            </h2>
+            <p class="text-text-muted leading-relaxed mb-3">
+              {post.data.description}
+            </p>
+            <time class="text-text-dim text-sm">
+              {new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </time>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .font-display {
+    font-family: 'Outfit', sans-serif;
+  }
+</style>
