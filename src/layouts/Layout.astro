@@ -6,9 +6,18 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description = "A beautiful native macOS Markdown viewer with syntax highlighting, Mermaid diagrams, KaTeX math, live reload, and a table of contents sidebar." } = Astro.props;
+const { title, description = "A beautiful native macOS Markdown viewer with Mermaid diagrams, KaTeX math, syntax highlighting, live reload, and table of contents. The best Markdown viewer for Mac.", ogImage = "/screenshots/01-mermaid-flowchart-light.png" } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
+
+const siteTitle = "Simply Markdown — Markdown Viewer for Mac";
+const fullTitle = title === "Home"
+  ? "Simply Markdown — Best Markdown Viewer for Mac | Mermaid, KaTeX, Syntax Highlighting"
+  : `${title} | ${siteTitle}`;
 ---
 
 <!doctype html>
@@ -18,14 +27,69 @@ const { title, description = "A beautiful native macOS Markdown viewer with synt
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL.href} />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Keywords -->
+    <meta name="keywords" content="markdown viewer, markdown reader, markdown app, mac markdown, macos markdown viewer, mermaid diagrams, katex math, syntax highlighting, markdown editor, markdown preview, best markdown viewer mac, native markdown app, gfm, github flavored markdown" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:site_name" content="Simply Markdown" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL.href} />
+
+    <!-- Apple specific -->
+    <meta name="apple-itunes-app" content="app-id=6760895817" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    <title>{title} | Simply Markdown</title>
+    <title>{fullTitle}</title>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Simply Markdown",
+      "description": "A beautiful native macOS Markdown viewer with Mermaid diagrams, KaTeX math, syntax highlighting, live reload, and table of contents.",
+      "url": "https://simplymarkdown.kongsjorden-studio.no",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "macOS",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "downloadUrl": "https://apps.apple.com/app/simply-markdown/id6760895817",
+      "softwareVersion": "1.0",
+      "author": {
+        "@type": "Organization",
+        "name": "Kongsjorden Studio"
+      },
+      "featureList": [
+        "Mermaid diagram rendering",
+        "KaTeX math equations",
+        "Syntax highlighting for 190+ languages",
+        "Live reload",
+        "Table of contents",
+        "Light and dark mode",
+        "GitHub Flavored Markdown",
+        "Folder browser"
+      ]
+    })} />
 
     <style>
       /* Page load animation */

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://simplymarkdown.kongsjorden-studio.no/sitemap-index.xml
